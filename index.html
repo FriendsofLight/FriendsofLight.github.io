@@ -32,42 +32,47 @@
             <a href="#" class="read-more">Đọc tiếp →</a>
         </article>
 
-        <article class="post">
-            <h2 class="post-title">Ghi chú về thuật toán Autofocus</h2>
-            <div class="post-meta">Ngày 02/02/2026 | Chủ đề: Optics</div>
-            <div class="post-content">
-                <p>Gần đây tôi đang nghiên cứu về thuật toán lấy nét tự động cho camera nhiệt. Việc xử lý nhiễu (noise) trong môi trường thiếu sáng thực sự là một thách thức lớn...</p>
-            </div>
-            <a href="#" class="read-more">Đọc tiếp →</a>
-        </article>
-        <article class="post">
-            <h2 class="post-title">Dự án: Chế tạo và Điều khiển Ống kính Zoom Hồng ngoại Liên tục (19mm - 300mm)</h2>
-            <div class="post-meta">Ngày 09/02/2026 | Chuyên mục: Embedded & Optics</div>
+       <article class="post">
+            <h2 class="post-title">Khi AI "thay máu" ngành phần mềm: Bài học từ cú bốc hơi 830 tỷ USD</h2>
+            <div class="post-meta">Ngày 10/02/2026 | Chuyên mục: Tech & Macro | Nguồn tham khảo: Dedao</div>
             
             <div class="post-content">
-                <p>Một trong những thách thức lớn nhất trong hệ thống quang điện tử là duy trì độ nét (focus) trong khi thay đổi trường nhìn (zoom). Đây là ghi chép về quá trình tôi thiết kế và điều khiển hệ thống ống kính zoom hồng ngoại dải tiêu cự rộng từ 19mm đến 300mm.</p>
-                
-                <h3>1. Phần cứng (Hardware)</h3>
-                <p>Để đảm bảo độ chính xác cao khi di chuyển các thấu kính, tôi không dùng động cơ bước thông thường mà chuyển sang giải pháp Servo:</p>
+                <p>Tuần qua, giới công nghệ chứng kiến một cơn địa chấn thực sự: Các mã cổ phiếu phần mềm toàn cầu bốc hơi <strong>830 tỷ USD</strong> chỉ trong một tuần. Nguyên nhân không đến từ suy thoái kinh tế, mà từ một "kẻ hủy diệt" mang tên <strong>Claude</strong> của Anthropic.</p>
+                <p>Là một người làm kỹ thuật, tôi nhìn thấy ở đây không chỉ là sự biến động tài chính, mà là sự sụp đổ của mô hình SaaS (Software as a Service) truyền thống mà chúng ta từng biết.</p>
+
+                <h3>1. Anthropic đã làm gì?</h3>
+                <p>Đầu năm nay, Anthropic tung ra 3 đòn đánh chí mạng:</p>
                 <ul>
-                    <li><strong>Vi điều khiển:</strong> STM32G431 (Dòng G4 chuyên cho Motor Control).</li>
-                    <li><strong>Động cơ:</strong> 02 Động cơ BLDC có gắn Encoder độ phân giải cao để hồi tiếp vị trí.</li>
-                    <li><strong>Driver:</strong> DRV8871 điều khiển dòng đỉnh cao.</li>
+                    <li><strong>Claude Cowork (12/01):</strong> Một desktop agent có khả năng thao tác máy tính thay người dùng.</li>
+                    <li><strong>Hệ sinh thái 11 Plugins (30/01):</strong> Biến Claude từ một chatbot thành chuyên gia trong các lĩnh vực Tài chính, Pháp lý, Sales...</li>
+                    <li><strong>Claude Opus 4.6 (05/02):</strong> Nâng cấp trí thông minh nền tảng (Base Model).</li>
+                </ul>
+                <p>Ví dụ điển hình: Thay vì thuê một trợ lý pháp lý và mua phần mềm Westlaw (giá 50.000 USD/năm) để soi hợp đồng, giờ đây bạn chỉ cần Claude Cowork + Legal Plugin với giá hơn 100 USD/tháng. AI tự đăng nhập, tự review, tự đánh dấu rủi ro.</p>
+
+                <h3>2. Ba trụ cột của SaaS đang sụp đổ</h3>
+                <p>Ngành phần mềm truyền thống sống dựa trên 3 trụ cột, và AI đang phá hủy cả 3:</p>
+                
+                <p><strong>Thứ nhất: Mô hình tính phí theo đầu người (Per-seat pricing).</strong><br>
+                Trước đây, công ty 100 người phải mua 100 license. Giờ đây, một AI Agent có thể cân việc của nhiều người. Mô hình thu phí sẽ chuyển từ "số lượng user" sang "mức độ sử dụng" (usage-based).</p>
+
+                <p><strong>Thứ hai: Giao diện phức tạp (GUI) làm rào cản.</strong><br>
+                Các phần mềm chuyên dụng thường cố tình làm giao diện phức tạp để người dùng ngại chuyển đổi (Vendor lock-in). Nhưng với AI, chúng ta tiến tới kỷ nguyên <strong>Zero-UI</strong>. Bạn không cần học cách dùng phần mềm, bạn chỉ cần ra lệnh, AI sẽ tự thao tác ở backend.</p>
+
+                <p><strong>Thứ ba: Sự khép kín (Walled Garden).</strong><br>
+                Đây là điểm tôi tâm đắc nhất: Sự trỗi dậy của <strong>MCP (Model Context Protocol)</strong>. Đây là giao thức chuẩn hóa cho phép AI kết nối với bất kỳ công cụ nào mà không cần API riêng biệt phức tạp. AI không còn bị nhốt trong một hệ sinh thái đóng; nó có thể "nhìn" thấy và sử dụng mọi công cụ bên ngoài.</p>
+
+                <h3>3. Tại sao là bây giờ?</h3>
+                <p>Sự kiện này không ngẫu nhiên mà là kết quả của sự hội tụ công nghệ:</p>
+                <ul>
+                    <li><strong>Áp lực thương mại hóa:</strong> Các công ty AI cần chứng minh lợi nhuận để biện minh cho hàng tỷ USD chi phí hạ tầng (dự kiến 1.400 tỷ USD vào 2027).</li>
+                    <li><strong>Model Compression & Edge AI:</strong> Đây là lĩnh vực tôi đang quan tâm. Khả năng nén mô hình để chạy local (trên máy tính, điện thoại) mà không cần server đang phát triển cực nhanh. Chip NPU ngày nay đã đủ mạnh (lên tới hàng trăm TOPS) để chạy các tác vụ này ngay tại biên (Edge).</li>
                 </ul>
 
-                <h3>2. Thách thức: Tải bất đối xứng</h3>
-                <p>Hệ cơ khí sử dụng cơ cấu cam để đẩy các nhóm thấu kính. Để khử độ rơ (backlash), hệ thống có lò xo nén. Điều này tạo ra một vấn đề thú vị về điều khiển: <strong>Tải trọng bị bất đối xứng.</strong></p>
-                <p>Khi động cơ đẩy lên dốc cam (ngược chiều lò xo), tải rất nặng. Ngược lại, khi đi xuống dốc, lò xo hỗ trợ đẩy nên tải nhẹ hơn. PID thông thường sẽ gặp khó khăn để ổn định vị trí chính xác ở cả hai chiều.</p>
-
-                <h3>3. Giải pháp: Dual PID & Feedforward</h3>
-                <p>Tôi đã áp dụng thuật toán điều khiển vị trí kết hợp <strong>Feedforward Load Compensation</strong> (Bù tải chuyển tiếp). Hệ thống sẽ ước lượng lực cản dựa trên vị trí của cam và chiều quay, từ đó cộng thêm một lượng mô-men dự báo vào đầu ra của bộ điều khiển PID.</p>
-                
-                <p>Kết quả bước đầu cho thấy hệ thống hoạt động mượt mà, giữ tiêu cự ổn định trên toàn dải zoom 19-300mm mà không bị rung lắc hay mất bước.</p>
-                
-                <p><em>(Chi tiết về thuật toán và sơ đồ mạch tôi sẽ cập nhật trong bài viết chuyên sâu sắp tới khi hoàn thiện paper).</em></p>
+                <h3>Kết luận</h3>
+                <p>Năm 2026 sẽ không chỉ là năm của AI, mà là năm của <strong>"AI Employees"</strong>. Với tư cách là kỹ sư, chúng ta không chỉ cạnh tranh với nhau, mà phải học cách điều phối những "đồng nghiệp silicon" này. Một cuộc tái cấu trúc quy trình làm việc (Workflow) là điều tất yếu.</p>
             </div>
             
-            <a href="#" class="read-more">Xem video demo (Coming soon) →</a>
+            <a href="#" class="read-more">Bình luận về bài viết →</a>
         </article>
     </main>
 
@@ -78,4 +83,5 @@
 </body>
 
 </html>
+
 

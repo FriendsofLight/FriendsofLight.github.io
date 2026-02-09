@@ -40,6 +40,35 @@
             </div>
             <a href="#" class="read-more">Đọc tiếp →</a>
         </article>
+        <article class="post">
+            <h2 class="post-title">Dự án: Chế tạo và Điều khiển Ống kính Zoom Hồng ngoại Liên tục (19mm - 300mm)</h2>
+            <div class="post-meta">Ngày 09/02/2026 | Chuyên mục: Embedded & Optics</div>
+            
+            <div class="post-content">
+                <p>Một trong những thách thức lớn nhất trong hệ thống quang điện tử là duy trì độ nét (focus) trong khi thay đổi trường nhìn (zoom). Đây là ghi chép về quá trình tôi thiết kế và điều khiển hệ thống ống kính zoom hồng ngoại dải tiêu cự rộng từ 19mm đến 300mm.</p>
+                
+                <h3>1. Phần cứng (Hardware)</h3>
+                <p>Để đảm bảo độ chính xác cao khi di chuyển các thấu kính, tôi không dùng động cơ bước thông thường mà chuyển sang giải pháp Servo:</p>
+                <ul>
+                    <li><strong>Vi điều khiển:</strong> STM32G431 (Dòng G4 chuyên cho Motor Control).</li>
+                    <li><strong>Động cơ:</strong> 02 Động cơ BLDC có gắn Encoder độ phân giải cao để hồi tiếp vị trí.</li>
+                    <li><strong>Driver:</strong> DRV8871 điều khiển dòng đỉnh cao.</li>
+                </ul>
+
+                <h3>2. Thách thức: Tải bất đối xứng</h3>
+                <p>Hệ cơ khí sử dụng cơ cấu cam để đẩy các nhóm thấu kính. Để khử độ rơ (backlash), hệ thống có lò xo nén. Điều này tạo ra một vấn đề thú vị về điều khiển: <strong>Tải trọng bị bất đối xứng.</strong></p>
+                <p>Khi động cơ đẩy lên dốc cam (ngược chiều lò xo), tải rất nặng. Ngược lại, khi đi xuống dốc, lò xo hỗ trợ đẩy nên tải nhẹ hơn. PID thông thường sẽ gặp khó khăn để ổn định vị trí chính xác ở cả hai chiều.</p>
+
+                <h3>3. Giải pháp: Dual PID & Feedforward</h3>
+                <p>Tôi đã áp dụng thuật toán điều khiển vị trí kết hợp <strong>Feedforward Load Compensation</strong> (Bù tải chuyển tiếp). Hệ thống sẽ ước lượng lực cản dựa trên vị trí của cam và chiều quay, từ đó cộng thêm một lượng mô-men dự báo vào đầu ra của bộ điều khiển PID.</p>
+                
+                <p>Kết quả bước đầu cho thấy hệ thống hoạt động mượt mà, giữ tiêu cự ổn định trên toàn dải zoom 19-300mm mà không bị rung lắc hay mất bước.</p>
+                
+                <p><em>(Chi tiết về thuật toán và sơ đồ mạch tôi sẽ cập nhật trong bài viết chuyên sâu sắp tới khi hoàn thiện paper).</em></p>
+            </div>
+            
+            <a href="#" class="read-more">Xem video demo (Coming soon) →</a>
+        </article>
     </main>
 
     <footer>
@@ -49,3 +78,4 @@
 </body>
 
 </html>
+

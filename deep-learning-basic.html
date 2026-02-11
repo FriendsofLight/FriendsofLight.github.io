@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Deep Learning] Cơ sở về Mạng thần kinh - Nguyệt Minh</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* CSS riêng cho bài này để ảnh căn giữa đẹp hơn */
+        .post-content img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .img-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: -15px;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Dev.Notes</h1>
+            <p>Ghi chép về Embedded, AI và Cuộc sống</p>
+            <nav>
+                <a href="index.html">← Quay lại trang chủ</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <article class="post">
+            <h1 class="post-title" style="font-size: 2rem;">[Deep Learning] Cơ sở về Mạng thần kinh nhân tạo</h1>
+            <div class="post-meta">Ngày 11/02/2026 | Chuyên mục: AI & Deep Learning</div>
+            
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+
+            <div class="post-content">
+                <p>Hiện nay, <strong>Deep Learning (DL)</strong> đang cực kỳ phổ biến và tạo ra những cuộc cách mạng không chỉ trong AI mà còn trong mọi lĩnh vực đời sống[cite: 8]. Để bắt đầu, bạn cần làm quen với khái niệm Mạng thần kinh nhân tạo (ANN)[cite: 9].</p>
+                
+                <p>Thực tế, nghiên cứu về mạng thần kinh đã có từ rất sớm nhưng từng rơi vào thoái trào, cho đến khi Geoffrey Hinton đạt được những đột phá mới. Bài viết này sẽ tổng kết các kiến thức cơ bản nhất[cite: 10, 11].</p>
+
+                <h3>1. Mô hình Neuron</h3>
+                <p>Neuron là đơn vị cơ bản nhất, lấy cảm hứng từ cơ chế truyền tin sinh học: Hưng phấn và Ức chế[cite: 13]. Khi điện thế vượt qua một ngưỡng (threshold) nhất định, neuron sẽ được kích hoạt ("hưng phấn") và truyền tín hiệu đi[cite: 14].</p>
+                
+                <img src="images/dl-01.jpg" alt="Cấu trúc Neuron sinh học">
+                <div class="img-caption">Hình 1: Cấu trúc Neuron sinh học</div>
+
+                <p>Năm 1943, McCulloch và Pitts đã mô phỏng cấu trúc này bằng mô hình toán học đơn giản gọi là "Neuron M-P"[cite: 15]:</p>
+
+                <img src="images/dl-02.jpg" alt="Mô hình Neuron M-P">
+                <div class="img-caption">Hình 2: Mô hình toán học Neuron M-P</div>
+
+                <p>Đầu ra của neuron được tính bằng công thức[cite: 16]:</p>
+                $$ y = f(\sum_{i=1}^{n} w_i x_i - \theta) $$
+                
+                <p>Trong đó $\theta$ là ngưỡng kích hoạt, $f(\cdot)$ là hàm kích hoạt[cite: 18]. Thay vì dùng hàm bước nhảy (step function) quá cứng nhắc, người ta thường dùng hàm <strong>Sigmoid</strong>[cite: 19]:</p>
+                
+                $$ f(x) = \frac{1}{1+e^{-x}} $$
+
+                <img src="images/dl-03.jpg" alt="Đồ thị hàm Sigmoid">
+                <div class="img-caption">Hình 3: Đồ thị hàm kích hoạt Sigmoid [cite: 20]</div>
+
+                <h3>2. Perceptron và Mạng thần kinh (Neural Network)</h3>
+                <p>Perceptron là cấu trúc gồm hai lớp: lớp đầu vào nhận tín hiệu và lớp đầu ra (neuron M-P)[cite: 25].</p>
+
+                <img src="images/dl-04.jpg" alt="Cấu trúc Perceptron">
+                <div class="img-caption">Hình 4: Cấu trúc Perceptron với 3 đầu vào</div>
+
+                <p>Công thức biểu diễn[cite: 28]:</p>
+                $$ y = f(\sum w x + b) $$
+                <p>Trong đó $b$ là độ chệch (bias). Perceptron là mô hình phân loại tuyến tính, giải quyết tốt các vấn đề logic như AND, OR, NOT[cite: 30].</p>
+
+                <img src="images/dl-05.jpg" alt="Phân tách tuyến tính">
+                <div class="img-caption">Hình 5: Bài toán phân tách tuyến tính</div>
+
+                <p>Tuy nhiên, Perceptron đơn lớp <strong>không thể giải quyết bài toán XOR</strong> (bài toán phi tuyến)[cite: 33]. Minsky đã chứng minh điều này năm 1969, khiến ngành AI rơi vào "kỷ băng hà" suốt gần 10 năm[cite: 35, 38].</p>
+                
+                <p>Để giải quyết vấn đề phi tuyến, ta cần dùng <strong>Perceptron đa lớp</strong> (Multi-Layer Perceptron)[cite: 41].</p>
+
+                <img src="images/dl-06.jpg" alt="Perceptron đa lớp giải quyết XOR">
+                <div class="img-caption">Hình 6: Mạng đa lớp giải quyết bài toán XOR</div>
+
+                <img src="images/dl-07.jpg" alt="Kết quả phân loại XOR">
+                <div class="img-caption">Hình 7: Mặt phân cách phi tuyến thu được</div>
+
+                <p>Thực tế phức tạp hơn XOR nhiều, đòi hỏi các mạng lưới sâu hơn (Deep Learning). Ví dụ, một mạng có 4 lớp ẩn dưới đây có ít nhất 33 tham số cần huấn luyện[cite: 47].</p>
+
+                <img src="images/dl-08.jpg" alt="Mạng thần kinh sâu">
+                <div class="img-caption">Hình 8: Ví dụ mạng thần kinh 4 lớp ẩn</div>
+
+                <h3>3. Thuật toán Lan truyền ngược (Backpropagation - BP)</h3>
+                <p>Làm sao để tìm ra hàng triệu tham số $w$ và $b$ tối ưu? Thuật toán thành công nhất chính là <strong>Lan truyền ngược (BP)</strong>[cite: 51].</p>
+                <p><strong>Quy trình tóm tắt [cite: 53-64]:</strong></p>
+                <ol>
+                    <li>Khởi tạo ngẫu nhiên trọng số và ngưỡng.</li>
+                    <li>Lặp lại với mỗi mẫu dữ liệu:
+                        <ul>
+                            <li>Tính toán đầu ra (Lan truyền tiến).</li>
+                            <li>Tính toán sai số và Gradient của lớp đầu ra.</li>
+                            <li>Tính toán Gradient ngược về các lớp ẩn.</li>
+                            <li>Cập nhật trọng số dựa trên Gradient.</li>
+                        </ul>
+                    </li>
+                    <li>Lặp lại cho đến khi đạt điều kiện dừng.</li>
+                </ol>
+
+                <h3>4. Các mô hình mạng thần kinh phổ biến</h3>
+                
+                <h4>4.1. Máy Boltzmann và RBM</h4>
+                <p>Đây là mô hình dựa trên năng lượng. RBM (Restricted Boltzmann Machine) thường được dùng để giảm độ phức tạp tính toán so với kết nối toàn bộ [cite: 67-70].</p>
+                <img src="images/dl-09.jpg" alt="RBM vs Boltzmann Machine">
+
+                <h4>4.2. Mạng RBF</h4>
+                <p>Sử dụng hàm cơ sở xuyên tâm (Radial Basis Function) làm hàm kích hoạt[cite: 72].</p>
+                <img src="images/dl-10.jpg" alt="Mạng RBF">
+
+                <h4>4.3. Mạng SOM (Self-Organizing Map)</h4>
+                <p>Giúp ánh xạ dữ liệu cao chiều xuống không gian thấp chiều (thường là 2D) mà vẫn giữ được cấu trúc liên kết[cite: 76].</p>
+                <img src="images/dl-11.jpg" alt="Mạng SOM">
+
+                <h4>4.4. Mạng thần kinh hồi quy (RNN)</h4>
+                <p>Cho phép xuất hiện các vòng lặp, giúp xử lý dữ liệu chuỗi thời gian (như giọng nói, văn bản) vì trạng thái hiện tại phụ thuộc cả vào quá khứ[cite: 78, 79].</p>
+                <img src="images/dl-12.jpg" alt="Cấu trúc mạng RNN">
+
+                <h3>5. Deep Learning (Học sâu)</h3>
+                <p>Deep Learning chỉ các mạng có từ 3 lớp trở lên[cite: 81]. Vấn đề lớn nhất của mạng sâu là "biến mất gradient" (vanishing gradient).</p>
+                <p>Để giải quyết, người ta dùng các kỹ thuật như:</p>
+                <ul>
+                    <li><strong>Pre-training:</strong> Huấn luyện không giám sát từng lớp trước khi tinh chỉnh toàn bộ[cite: 83].</li>
+                    <li><strong>Weight Sharing (Chia sẻ trọng số):</strong> Đây là cốt lõi của mạng <strong>CNN (Convolutional Neural Network)</strong>, giúp giảm khối lượng tính toán cực lớn khi xử lý ảnh[cite: 84].</li>
+                </ul>
+
+                <img src="images/dl-13.jpg" alt="Mạng CNN">
+                <div class="img-caption">Hình 13: Kiến trúc mạng tích chập (CNN) điển hình (LeNet)</div>
+
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Nguyệt Minh. Hosted on GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>

@@ -7,16 +7,17 @@
     <link rel="stylesheet" href="style.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']]
-    }
-  };
-</script>
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <style>
         .post-content img {
@@ -78,120 +79,135 @@
                     </ul>
                 </div>
 
-                [cite_start]<p>Hiện nay, Deep Learning (DL) đang cực kỳ phổ biến và tạo ra những cuộc cách mạng không chỉ trong AI mà còn trong mọi lĩnh vực đời sống[cite: 8]. [cite_start]Để bắt đầu, bạn cần làm quen với khái niệm Mạng thần kinh nhân tạo (ANN)[cite: 9].</p>
+                <p>Hiện nay, Deep Learning (DL) đang cực kỳ phổ biến và tạo ra những cuộc cách mạng không chỉ trong AI mà còn trong mọi lĩnh vực đời sống. Để bắt đầu, bạn cần làm quen với khái niệm Mạng thần kinh nhân tạo (ANN).</p>
                 
-                <p>Tại sao lại nói là "chú ý trở lại"? [cite_start]Thực tế, nghiên cứu về mạng thần kinh đã có từ rất sớm nhưng từng rơi vào thoái trào, cho đến khi Hinton đạt được những đột phá mới[cite: 10]. [cite_start]Bài viết này sẽ tổng kết các kiến thức cơ bản nhất[cite: 11].</p>
+                <p>Tại sao lại nói là "chú ý trở lại"? Thực tế, nghiên cứu về mạng thần kinh đã có từ rất sớm nhưng từng rơi vào thoái trào, cho đến khi Hinton đạt được những đột phá mới. Bài viết này sẽ tổng kết các kiến thức cơ bản nhất.</p>
 
                 <h3>1. Mô hình Neuron</h3>
-                [cite_start]<p>Neuron là đơn vị cơ bản nhất, lấy cảm hứng từ cơ chế truyền tin sinh học: Hưng phấn và Ức chế[cite: 13]. [cite_start]Khi điện thế vượt qua một ngưỡng (threshold) nhất định, neuron sẽ được kích hoạt ("hưng phấn") và truyền tín hiệu đi[cite: 14].</p>
+                <p>Neuron là đơn vị cơ bản nhất, lấy cảm hứng từ cơ chế truyền tin sinh học: Hưng phấn và Ức chế. Khi điện thế vượt qua một ngưỡng (threshold) nhất định, neuron sẽ được kích hoạt ("hưng phấn") và truyền tín hiệu đi.</p>
 
                 <img src="images/dl-02.jpg" alt="Neuron sinh học">
+                <div class="img-caption">Hình 1: Cấu trúc Neuron sinh học</div>
                 
-                [cite_start]<p>Năm 1943, McCulloch và Pitts đã mô phỏng cấu trúc này bằng mô hình toán học đơn giản gọi là "Neuron M-P"[cite: 15]:</p>
+                <p>Năm 1943, McCulloch và Pitts đã mô phỏng cấu trúc này bằng mô hình toán học đơn giản gọi là "Neuron M-P":</p>
 
                 <img src="images/dl-03.jpg" alt="Neuron M-P">
+                <div class="img-caption">Hình 2: Mô hình toán học Neuron M-P</div>
                 
-                [cite_start]<p>Đầu ra của neuron được tính bằng[cite: 16]:</p>
+                <p>Đầu ra của neuron được tính bằng:</p>
                 $$ y = f(\sum_{i=1}^{n} w_i x_i - \theta) $$
                 
-                [cite_start]<p>Trong đó $\theta$ là ngưỡng kích hoạt, $f(\cdot)$ là hàm kích hoạt[cite: 18]. [cite_start]Thay vì dùng hàm bước nhảy (step function) quá cứng nhắc (không liên tục, không thể lấy đạo hàm), người ta thường dùng hàm Sigmoid[cite: 19].</p>
+                <p>Trong đó $\theta$ là ngưỡng kích hoạt, $f(\cdot)$ là hàm kích hoạt. Thay vì dùng hàm bước nhảy (step function) quá cứng nhắc (không liên tục, không thể lấy đạo hàm), người ta thường dùng hàm Sigmoid.</p>
                 
-                [cite_start]<p>Biểu thức và đồ thị hàm Sigmoid[cite: 20]:</p>
+                <p>Biểu thức và đồ thị hàm Sigmoid:</p>
                 <img src="images/dl-04.jpg" alt="Đồ thị Sigmoid">
+                <div class="img-caption">Hình 3: Hàm kích hoạt Sigmoid</div>
                 
                 $$ f(x) = \frac{1}{1+e^{-x}} $$
 
-                <h3>2. [cite_start]Perceptron và Mạng thần kinh (Neural Network) [cite: 24]</h3>
-                [cite_start]<p>Perceptron là một cấu trúc được tạo thành từ hai lớp neuron: lớp đầu vào dùng để nhận tín hiệu từ bên ngoài, và lớp đầu ra (còn được gọi là lớp chức năng của Perceptron) chính là các neuron M-P[cite: 25].</p>
+                <h3>2. Perceptron và Mạng thần kinh (Neural Network)</h3>
+                <p>Perceptron là một cấu trúc được tạo thành từ hai lớp neuron: lớp đầu vào dùng để nhận tín hiệu từ bên ngoài, và lớp đầu ra (còn được gọi là lớp chức năng của Perceptron) chính là các neuron M-P.</p>
                 
-                [cite_start]<p>Hình dưới đây minh họa cấu trúc của một Perceptron có lớp đầu vào gồm ba neuron (ký hiệu lần lượt là $x_0, x_1, x_2$)[cite: 26]:</p>
+                <p>Hình dưới đây minh họa cấu trúc của một Perceptron có lớp đầu vào gồm ba neuron (ký hiệu lần lượt là $x_0, x_1, x_2$):</p>
 
                 <img src="images/dl-05.jpg" alt="Cấu trúc Perceptron">
+                <div class="img-caption">Hình 4: Mạng Perceptron đơn giản</div>
                 
-                [cite_start]<p>Dựa vào hình trên, có thể dễ dàng hiểu được mô hình Perceptron được biểu diễn bằng công thức sau[cite: 27]:</p>
+                <p>Dựa vào hình trên, có thể dễ dàng hiểu được mô hình Perceptron được biểu diễn bằng công thức sau:</p>
                 $$ y = f(\sum w x + b) $$
-                [cite_start]<p>Trong đó, $w$ là trọng số kết nối từ lớp đầu vào đến lớp đầu ra, $b$ đại diện cho độ chệch (bias) của lớp đầu ra[cite: 29].</p>
+                <p>Trong đó, $w$ là trọng số kết nối từ lớp đầu vào đến lớp đầu ra, $b$ đại diện cho độ chệch (bias) của lớp đầu ra.</p>
 
-                [cite_start]<p>Thực tế, Perceptron là một mô hình phân loại tuyến tính kiểu phân biệt (discriminative), có thể giải quyết các vấn đề logic đơn giản như AND, OR, NOT vốn có đặc tính tuyến tính (linearly separable)[cite: 30].</p>
+                <p>Thực tế, Perceptron là một mô hình phân loại tuyến tính kiểu phân biệt (discriminative), có thể giải quyết các vấn đề logic đơn giản như AND, OR, NOT vốn có đặc tính tuyến tính (linearly separable).</p>
                 
-                [cite_start]<p>Hình minh họa cho bài toán phân tách tuyến tính xem tại đây[cite: 31]:</p>
+                <p>Hình minh họa cho bài toán phân tách tuyến tính xem tại đây:</p>
                 <img src="images/dl-06.jpg" alt="Phân tách tuyến tính">
+                <div class="img-caption">Hình 5: Phân loại tuyến tính</div>
 
-                [cite_start]<p>Tuy nhiên, vì nó chỉ có một lớp neuron chức năng, khả năng học tập rất hạn chế[cite: 32]. [cite_start]Thực tế đã chứng minh rằng Perceptron đơn lớp không thể giải quyết bài toán phi tuyến đơn giản nhất — bài toán XOR (loại trừ)[cite: 33].</p>
+                <p>Tuy nhiên, vì nó chỉ có một lớp neuron chức năng, khả năng học tập rất hạn chế. Thực tế đã chứng minh rằng Perceptron đơn lớp không thể giải quyết bài toán phi tuyến đơn giản nhất — bài toán XOR (loại trừ).</p>
                 
-                [cite_start]<p>Có một giai đoạn lịch sử về việc Perceptron giải quyết bài toán XOR mà chúng ta nên biết: Thuở sơ khai, mọi người quá hào hứng mà không nhận ra Perceptron chỉ làm được các nhiệm vụ phân loại tuyến tính đơn giản[cite: 34]. [cite_start]Cho đến khi Minsky - một "người khổng lồ" trong lĩnh vực AI - chỉ ra điều này trong cuốn sách "Perceptrons" (1969)[cite: 35]. [cite_start]Ông đã chứng minh toán học về điểm yếu của Perceptron, đặc biệt là việc không giải quyết được logic XOR[cite: 36].</p>
+                <p>Có một giai đoạn lịch sử về việc Perceptron giải quyết bài toán XOR mà chúng ta nên biết: Thuở sơ khai, mọi người quá hào hứng mà không nhận ra Perceptron chỉ làm được các nhiệm vụ phân loại tuyến tính đơn giản. Cho đến khi Minsky - một "người khổng lồ" trong lĩnh vực AI - chỉ ra điều này trong cuốn sách "Perceptrons" (1969). Ông đã chứng minh toán học về điểm yếu của Perceptron, đặc biệt là việc không giải quyết được logic XOR.</p>
                 
-                [cite_start]<p>Minsky cho rằng nếu tăng lên hai lớp tính toán thì khối lượng tính toán sẽ quá lớn và không có thuật toán học hiệu quả[cite: 37]. [cite_start]Do tầm ảnh hưởng của ông, nghiên cứu về mạng thần kinh đã rơi vào "kỷ băng hà" (AI Winter) suốt gần 10 năm, cho đến khi những nghiên cứu về mạng thần kinh hai lớp giúp lĩnh vực này hồi sinh[cite: 38].</p>
+                <p>Minsky cho rằng nếu tăng lên hai lớp tính toán thì khối lượng tính toán sẽ quá lớn và không có thuật toán học hiệu quả. Do tầm ảnh hưởng của ông, nghiên cứu về mạng thần kinh đã rơi vào "kỷ băng hà" (AI Winter) suốt gần 10 năm, cho đến khi những nghiên cứu về mạng thần kinh hai lớp giúp lĩnh vực này hồi sinh.</p>
                 
-                [cite_start]<p>Chúng ta biết rằng hầu hết các vấn đề trong cuộc sống không phải là tuyến tính[cite: 39]. [cite_start]Để giải quyết các bài toán phi tuyến, chúng ta cần đưa vào khái niệm "đa lớp"[cite: 40]. [cite_start]Nếu đơn lớp không giải quyết được XOR, chúng ta dùng Perceptron đa lớp[cite: 41].</p>
+                <p>Chúng ta biết rằng hầu hết các vấn đề trong cuộc sống không phải là tuyến tính. Để giải quyết các bài toán phi tuyến, chúng ta cần đưa vào khái niệm "đa lớp". Nếu đơn lớp không giải quyết được XOR, chúng ta dùng Perceptron đa lớp.</p>
                 
-                [cite_start]<p>Hình dưới là minh họa Perceptron hai lớp giải quyết bài toán XOR[cite: 42]:</p>
+                <p>Hình dưới là minh họa Perceptron hai lớp giải quyết bài toán XOR:</p>
                 <img src="images/dl-07.jpg" alt="Perceptron đa lớp">
+                <div class="img-caption">Hình 6: Giải quyết bài toán XOR với mạng đa lớp</div>
 
-                [cite_start]<p>Sau khi xây dựng mạng lưới trên, thông qua huấn luyện, mặt phân loại cuối cùng thu được như sau[cite: 43]:</p>
+                <p>Sau khi xây dựng mạng lưới trên, thông qua huấn luyện, mặt phân loại cuối cùng thu được như sau:</p>
                 <img src="images/dl-08.jpg" alt="Kết quả XOR">
+                <div class="img-caption">Hình 7: Kết quả phân loại phi tuyến</div>
 
-                [cite_start]<p>Có thể thấy, Perceptron đa lớp (thường được gọi là Mạng thần kinh) giải quyết rất tốt các vấn đề phi tuyến[cite: 44]. [cite_start]Tuy nhiên, đúng như lo ngại của Minsky, thực tế phức tạp hơn XOR nhiều[cite: 45]. [cite_start]Chúng ta cần xây dựng các mạng nhiều lớp hơn, và việc xác định thuật toán học cho chúng là một thách thức lớn[cite: 46].</p>
+                <p>Có thể thấy, Perceptron đa lớp (thường được gọi là Mạng thần kinh) giải quyết rất tốt các vấn đề phi tuyến. Tuy nhiên, đúng như lo ngại của Minsky, thực tế phức tạp hơn XOR nhiều. Chúng ta cần xây dựng các mạng nhiều lớp hơn, và việc xác định thuật toán học cho chúng là một thách thức lớn.</p>
                 
-                [cite_start]<p>Ví dụ, một mạng có 4 lớp ẩn như hình dưới đây có ít nhất 33 tham số (chưa tính bias), làm sao để xác định chúng? [cite: 47]</p>
+                <p>Ví dụ, một mạng có 4 lớp ẩn như hình dưới đây có ít nhất 33 tham số (chưa tính bias), làm sao để xác định chúng?</p>
                 <img src="images/dl-09.jpg" alt="Mạng 4 lớp ẩn">
+                <div class="img-caption">Hình 8: Mạng thần kinh sâu (Deep Neural Network)</div>
 
-                <h3>3. [cite_start]Thuật toán Lan truyền ngược (Backpropagation - BP) [cite: 48]</h3>
-                [cite_start]<p>Mục đích chính của việc huấn luyện mạng thần kinh là thông qua thuật toán để tìm ra các tham số (trọng số kết nối và độ chệch) tối ưu[cite: 49]. [cite_start]Người thiết kế sẽ dựa vào bài toán thực tế để tạo cấu trúc mạng, còn tham số sẽ được tìm thấy thông qua việc lặp đi lặp lại các mẫu huấn luyện[cite: 50].</p>
+                <h3>3. Thuật toán Lan truyền ngược (Backpropagation - BP)</h3>
+                <p>Mục đích chính của việc huấn luyện mạng thần kinh là thông qua thuật toán để tìm ra các tham số (trọng số kết nối và độ chệch) tối ưu. Người thiết kế sẽ dựa vào bài toán thực tế để tạo cấu trúc mạng, còn tham số sẽ được tìm thấy thông qua việc lặp đi lặp lại các mẫu huấn luyện.</p>
                 
-                [cite_start]<p>Thuật toán thành công nhất chính là Lan truyền ngược (BP)[cite: 51]. [cite_start]Nó thường được dùng trong các mạng thần kinh tiến (feedforward) đa lớp[cite: 52].</p>
+                <p>Thuật toán thành công nhất chính là Lan truyền ngược (BP). Nó thường được dùng trong các mạng thần kinh tiến (feedforward) đa lớp.</p>
                 
-                [cite_start]<p><strong>Quy trình chính của thuật toán BP[cite: 53]:</strong></p>
+                <p><strong>Quy trình chính của thuật toán BP:</strong></p>
                 <ul>
-                    [cite_start]<li><strong>Đầu vào:</strong> Tập huấn luyện $D$, tốc độ học (learning rate)[cite: 54].</li>
+                    <li><strong>Đầu vào:</strong> Tập huấn luyện $D$, tốc độ học (learning rate).</li>
                     <li><strong>Quy trình:</strong>
                         <ul>
-                            [cite_start]<li>Khởi tạo ngẫu nhiên trọng số và ngưỡng trong khoảng (0, 1)[cite: 56].</li>
-                            [cite_start]<li>Lặp lại (repeat)[cite: 57]:</li>
-                            [cite_start]<li>Với mỗi mẫu $(x_k, y_k)$ trong $D$[cite: 58]:
+                            <li>Khởi tạo ngẫu nhiên trọng số và ngưỡng trong khoảng (0, 1).</li>
+                            <li>Lặp lại (repeat):</li>
+                            <li>Với mỗi mẫu $(x_k, y_k)$ trong $D$:
                                 <ul>
-                                    [cite_start]<li>Tính toán đầu ra dựa trên tham số hiện tại[cite: 59].</li>
-                                    [cite_start]<li>Tính toán gradient của các neuron lớp đầu ra[cite: 60].</li>
-                                    [cite_start]<li>Tính toán gradient của các neuron lớp ẩn[cite: 61].</li>
-                                    [cite_start]<li>Cập nhật trọng số kết nối và ngưỡng[cite: 62].</li>
+                                    <li>Tính toán đầu ra dựa trên tham số hiện tại.</li>
+                                    <li>Tính toán gradient của các neuron lớp đầu ra.</li>
+                                    <li>Tính toán gradient của các neuron lớp ẩn.</li>
+                                    <li>Cập nhật trọng số kết nối và ngưỡng.</li>
                                 </ul>
                             </li>
-                            [cite_start]<li>Kết thúc vòng lặp (end for)[cite: 63].</li>
+                            <li>Kết thúc vòng lặp (end for).</li>
                         </ul>
                     </li>
-                    [cite_start]<li>Cho đến khi đạt điều kiện dừng[cite: 64].</li>
-                    [cite_start]<li><strong>Đầu ra:</strong> Mạng thần kinh với các tham số đã xác định[cite: 65].</li>
+                    <li>Cho đến khi đạt điều kiện dừng.</li>
+                    <li><strong>Đầu ra:</strong> Mạng thần kinh với các tham số đã xác định.</li>
                 </ul>
 
-                <h3>4. [cite_start]Các mô hình mạng thần kinh phổ biến [cite: 66]</h3>
+                <h3>4. Các mô hình mạng thần kinh phổ biến</h3>
                 
-                [cite_start]<h4>4.1 Máy Boltzmann và Máy Boltzmann hạn chế (RBM) [cite: 67]</h4>
-                <p>Đây là các mô hình dựa trên "năng lượng". [cite_start]Việc huấn luyện là để tối thiểu hóa hàm năng lượng[cite: 68]. [cite_start]Máy Boltzmann tiêu chuẩn là mạng kết nối toàn bộ nên độ phức tạp tính toán rất cao[cite: 69]. [cite_start]Do đó, chúng ta thường dùng RBM (không kết nối trong cùng một lớp, chỉ kết nối giữa các lớp)[cite: 70].</p>
+                <h4>4.1 Máy Boltzmann và Máy Boltzmann hạn chế (RBM)</h4>
+                <p>Đây là các mô hình dựa trên "năng lượng". Việc huấn luyện là để tối thiểu hóa hàm năng lượng. Máy Boltzmann tiêu chuẩn là mạng kết nối toàn bộ nên độ phức tạp tính toán rất cao. Do đó, chúng ta thường dùng RBM (không kết nối trong cùng một lớp, chỉ kết nối giữa các lớp).</p>
                 <img src="images/dl-10.jpg" alt="RBM">
+                <div class="img-caption">Hình 9: So sánh Boltzmann Machine và RBM</div>
 
-                [cite_start]<h4>4.2 Mạng RBF [cite: 71]</h4>
-                [cite_start]<p>Mạng hàm cơ sở xuyên tâm (RBF) là mạng tiến đơn lớp ẩn, sử dụng hàm RBF làm hàm kích hoạt cho lớp ẩn[cite: 72].</p>
+                <h4>4.2 Mạng RBF</h4>
+                <p>Mạng hàm cơ sở xuyên tâm (RBF) là mạng tiến đơn lớp ẩn, sử dụng hàm RBF làm hàm kích hoạt cho lớp ẩn.</p>
                 <img src="images/dl-11.jpg" alt="Mạng RBF">
+                <div class="img-caption">Hình 10: Mạng Radial Basis Function (RBF)</div>
 
-                [cite_start]<h4>4.3 Mạng ART [cite: 73]</h4>
-                [cite_start]<p>Đại diện cho việc học cạnh tranh, giúp giải quyết mâu thuẫn giữa tính dẻo (học cái mới) và tính ổn định (nhớ cái cũ)[cite: 74].</p>
+                <h4>4.3 Mạng ART</h4>
+                <p>Đại diện cho việc học cạnh tranh, giúp giải quyết mâu thuẫn giữa tính dẻo (học cái mới) và tính ổn định (nhớ cái cũ).</p>
 
-                [cite_start]<h4>4.4 Mạng SOM [cite: 75]</h4>
-                [cite_start]<p>Mạng tự tổ chức giúp ánh xạ dữ liệu cao chiều xuống không gian thấp chiều (thường là 2D) mà vẫn giữ được cấu trúc liên kết[cite: 76].</p>
+                <h4>4.4 Mạng SOM</h4>
+                <p>Mạng tự tổ chức giúp ánh xạ dữ liệu cao chiều xuống không gian thấp chiều (thường là 2D) mà vẫn giữ được cấu trúc liên kết.</p>
                 <img src="images/dl-12.jpg" alt="Mạng SOM">
+                <div class="img-caption">Hình 11: Mạng tự tổ chức (SOM)</div>
 
-                [cite_start]<h4>4.6 Mạng thần kinh hồi quy (RNN) và mạng Elman [cite: 77]</h4>
-                [cite_start]<p>Khác với mạng tiến, RNN cho phép xuất hiện các cấu trúc vòng lặp, giúp đầu ra tại thời điểm $t$ phụ thuộc vào cả đầu vào hiện tại và trạng thái tại thời điểm $t-1$[cite: 78]. [cite_start]Điều này cực kỳ hiệu quả cho dữ liệu chuỗi thời gian[cite: 79].</p>
+                <h4>4.6 Mạng thần kinh hồi quy (RNN) và mạng Elman</h4>
+                <p>Khác với mạng tiến, RNN cho phép xuất hiện các cấu trúc vòng lặp, giúp đầu ra tại thời điểm $t$ phụ thuộc vào cả đầu vào hiện tại và trạng thái tại thời điểm $t-1$. Điều này cực kỳ hiệu quả cho dữ liệu chuỗi thời gian.</p>
                 <img src="images/dl-13.jpg" alt="Mạng RNN Cyclic">
+                <div class="img-caption">Hình 12: Cấu trúc RNN có vòng lặp</div>
+                
                 <img src="images/dl-14.jpg" alt="Mạng RNN Unfolded">
+                <div class="img-caption">Hình 13: Cấu trúc RNN trải rộng theo thời gian</div>
 
-                <h3>5. [cite_start]Deep Learning (Học sâu) [cite: 80]</h3>
-                [cite_start]<p>Deep Learning chỉ các mô hình mạng thần kinh sâu, thường là các mạng có từ 3 lớp trở lên[cite: 81]. [cite_start]Tầng lớp càng sâu, khả năng mô tả thực tế càng mạnh nhưng lại dễ gặp vấn đề "biến mất gradient" (vanishing gradient) khi huấn luyện bằng thuật toán BP truyền thống[cite: 82].</p>
+                <h3>5. Deep Learning (Học sâu)</h3>
+                <p>Deep Learning chỉ các mô hình mạng thần kinh sâu, thường là các mạng có từ 3 lớp trở lên. Tầng lớp càng sâu, khả năng mô tả thực tế càng mạnh nhưng lại dễ gặp vấn đề "biến mất gradient" (vanishing gradient) khi huấn luyện bằng thuật toán BP truyền thống.</p>
                 
-                [cite_start]<p>Một giải pháp hiệu quả là "Huấn luyện không giám sát từng lớp" (unsupervised layer-wise training) hay còn gọi là "Pre-training", sau đó mới tiến hành "Fine-tuning" (tinh chỉnh) toàn bộ mạng[cite: 83].</p>
+                <p>Một giải pháp hiệu quả là "Huấn luyện không giám sát từng lớp" (unsupervised layer-wise training) hay còn gọi là "Pre-training", sau đó mới tiến hành "Fine-tuning" (tinh chỉnh) toàn bộ mạng.</p>
                 
-                [cite_start]<p>Một chiến lược khác để giảm chi phí huấn luyện là "Chia sẻ trọng số" (weight sharing), vốn đóng vai trò cốt lõi trong Mạng thần kinh tích chập (CNN)[cite: 84].</p>
+                <p>Một chiến lược khác để giảm chi phí huấn luyện là "Chia sẻ trọng số" (weight sharing), vốn đóng vai trò cốt lõi trong Mạng thần kinh tích chập (CNN).</p>
                 <img src="images/dl-15.jpg" alt="Mạng CNN">
+                <div class="img-caption">Hình 14: Mạng tích chập (CNN)</div>
 
             </div>
         </article>
